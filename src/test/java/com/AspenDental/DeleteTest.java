@@ -3,9 +3,6 @@ package com.AspenDental;
 import constants.Const;
 import dto.request.PostRequestDTO;
 import dto.response.ResponsePostDTO;
-import dto.response.errors.DELETEerrorDTO;
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -31,6 +28,25 @@ public class DeleteTest {
 
     }
 
-    //delete nonexisting
+
+    @Test
+    public void deleteNonExistingRepo(){
+
+        Response responseDelete =
+                Rest.deleteRepo(Const.NON_EXISTING_REPO, Const.TOKEN);
+        Assert.assertEquals(responseDelete.getStatusCode(), 404);
+
+    }
+
+    @Test
+    public void deleteRepoUnauthorized(){
+
+        Response responseDelete =
+                Rest.deleteRepo(Const.NON_EXISTING_REPO, Const.INVALID_TOKEN);
+        Assert.assertEquals(responseDelete.getStatusCode(), 401);
+
+    }
+
+
 
 }

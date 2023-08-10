@@ -1,17 +1,14 @@
 package dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-//@Data
-//@AllArgsConstructor
-//@NoArgsConstructor
 public class PostRequestDTO {
 
     private String name;
     private String description;
     private String homepage;
+
+    public PostRequestDTO() {
+    }
 
     public PostRequestDTO(String name, String description, String homepage) {
         this.name = name;

@@ -26,10 +26,10 @@ public class PostTest {
 
 
     @Test
-    public void postExistingTest(){
+    public void postExistingRepoTest(){
 
         Response response =
-                Rest.postRepo(new PostRequestDTO(Const.ALREADY_EXISTING_REPO, Const.NEW_REPO_DESCRIPTION, Const.NEW_REPO_HOMEPAGE),
+                Rest.postRepo(new PostRequestDTO(Const.ALREADY_EXISTING_REPO_NAME, Const.NEW_REPO_DESCRIPTION, Const.NEW_REPO_HOMEPAGE),
                         Const.TOKEN);
         Assert.assertEquals(response.getStatusCode(), 422);
 
@@ -37,5 +37,34 @@ public class PostTest {
 
     }
 
+    @Test
+    public void postRepoUnprocessableRequestTest() {
+
+        Response response =
+                Rest.postRepo(new PostRequestDTO("","",""),
+                        Const.TOKEN);
+        Assert.assertEquals(response.getStatusCode(), 422);
+
+    }
+
+    @Test
+    public void postRepoBadRequestTest() {
+
+        Response response =
+                Rest.postRepo(new PostRequestDTO(),
+                        Const.TOKEN);
+        Assert.assertEquals(response.getStatusCode(), 422);
+
+    }
+
+    @Test
+    public void postRepoUnauthorizedTest() {
+
+        Response response =
+                Rest.postRepo(new PostRequestDTO(Const.ALREADY_EXISTING_REPO_NAME, Const.NEW_REPO_DESCRIPTION, Const.NEW_REPO_HOMEPAGE),
+                        Const.INVALID_TOKEN);
+        Assert.assertEquals(response.getStatusCode(), 401);
+
+    }
 
 }
