@@ -6,7 +6,7 @@ public class Const {
 
     public static final String HEADER_ACCEPT = "application/vnd.github+json";
     public static final String X_GITHUB_API_VERSION = "2022-11-28";
-    public static final String TOKEN = "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";
+    public static final String TOKEN = "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";
     public static final String INVALID_TOKEN = "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1";
 
     public static final String REPO = "/repArchived";
